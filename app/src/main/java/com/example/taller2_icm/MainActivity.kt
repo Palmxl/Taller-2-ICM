@@ -2,21 +2,43 @@ package com.example.taller2_icm
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageButton
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.Button
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        // Buscar el botón por su id
-        val botonIr = findViewById<Button>(R.id.botonIr)
+        // Ajuste automático para evitar solapamiento con barras del sistema
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
-        // Al presionar el botón, ir a la segunda pantalla
-        botonIr.setOnClickListener {
-            val intent = Intent(this, MapaActivity::class.java)
-            startActivity(intent)
+        // --- Configuración de los botones de navegación ---
+        val btnContactos = findViewById<ImageButton>(R.id.btnContactos)
+        val btnImagen = findViewById<ImageButton>(R.id.btnImagen)
+        val btnMapa = findViewById<ImageButton>(R.id.btnMapa)
+
+        // Ir a ContactosActivity
+        btnContactos.setOnClickListener {
+            startActivity(Intent(this, ContactosActivity::class.java))
+        }
+
+        // Ir a ImagenActivity
+        btnImagen.setOnClickListener {
+            startActivity(Intent(this, ImagenActivity::class.java))
+        }
+
+        // Ir a MapaActivity
+        btnMapa.setOnClickListener {
+            startActivity(Intent(this, MapaActivity::class.java))
         }
     }
 }
