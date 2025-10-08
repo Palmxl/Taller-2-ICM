@@ -1,4 +1,4 @@
-# 📱 Taller 2 – Introducción a la Computación Móvil 2025-30  
+#  Taller 2 – Introducción a la Computación Móvil 2025-30  
 
 **Grupo:** SinWifi  
 
